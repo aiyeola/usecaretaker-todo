@@ -52,7 +52,6 @@ export default function TaskList() {
 
 function toggleTaskStatus(arr: TaskListType[], id: number) {
   const index = arr.findIndex((task) => task.id === id);
-  console.log('index: ', index);
 
   return [
     ...arr.slice(0, index),
