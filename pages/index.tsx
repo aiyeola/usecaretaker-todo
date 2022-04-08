@@ -58,6 +58,7 @@ const Index: NextPage = () => {
           <p
             className="text-brown text-xl cursor-pointer"
             onClick={() => setColorTag('all')}
+            title="reset filter"
           >
             {feedbackText[colorTag]}
           </p>
