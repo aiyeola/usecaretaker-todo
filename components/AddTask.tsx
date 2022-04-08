@@ -7,6 +7,7 @@ import { useSetRecoilState } from 'recoil';
 import ColorBox from '@components/assets/ColorBox';
 import PlusIcon from '@components/assets/PlusIcon';
 import { taskListState } from '@components/atoms/taskListState';
+import type { TaskListType } from '@typings';
 
 class Schema {
   @IsNotEmpty({
@@ -19,7 +20,7 @@ class Schema {
 }
 
 export default function AddTask() {
-  const setTaskList = useSetRecoilState(taskListState);
+  const setTaskList = useSetRecoilState<TaskListType[]>(taskListState);
 
   const {
     control,
@@ -60,7 +61,7 @@ export default function AddTask() {
           <PlusIcon />
         </button>
 
-        <div className="w-[300px] h-[32px] flex flex-col relative">
+        <div className="min-w-[210px] max-w-[300px] h-[32px] flex flex-col relative">
           <input
             type="text"
             {...register('task')}
@@ -85,7 +86,7 @@ export default function AddTask() {
                 <ColorBox
                   className={
                     checked
-                      ? 'ring-offset-1 ring ring-gray-secondary rounded-[12px]'
+                      ? 'ring-offset-0 ring ring-border-gray rounded-[12px]'
                       : ''
                   }
                 />
@@ -96,7 +97,7 @@ export default function AddTask() {
                 <ColorBox
                   className={
                     checked
-                      ? 'ring-offset-1 ring ring-gray-secondary rounded-[12px]'
+                      ? 'ring-offset-0 ring ring-border-gray rounded-[12px]'
                       : ''
                   }
                   fill="#8F83DA"

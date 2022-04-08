@@ -1,15 +1,19 @@
 /* eslint-disable react/jsx-key */
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 
 import ColorBox from '@components/assets/ColorBox';
 import Unchecked from '@components/assets/Unchecked';
 import Checked from '@components/assets/Checked';
-import { taskListState } from '@components/atoms/taskListState';
+import {
+  taskListState,
+  filteredTaskListState,
+} from '@components/atoms/taskListState';
 import type { TaskListType } from '@typings';
 
 export default function TaskList() {
-  const [taskList, setTaskList] = useRecoilState<TaskListType[]>(taskListState);
+  const setTaskList = useSetRecoilState<TaskListType[]>(taskListState);
+  const { taskList } = useRecoilValue(filteredTaskListState);
 
   const colorTag = {
     primary: <ColorBox width={18} height={18} />,
@@ -37,7 +41,7 @@ export default function TaskList() {
                 </div>
                 <p className="text-[20px] text-gray-primary">{task.task}</p>
               </div>
-              <div>{colorTag[task.colorTag]}</div>
+              <div className="ml-[5px]">{colorTag[task.colorTag]}</div>
             </div>
           );
         }),

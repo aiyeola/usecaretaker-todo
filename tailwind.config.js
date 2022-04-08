@@ -17,7 +17,8 @@ module.exports = {
         'blue-border': '#6085D8',
         'gray-primary': '#5B5B5B',
         'gray-secondary': '#B3B3B3',
-        'border-gray': '#EFEFEF',
+        'border-gray': '#F5F5F5',
+        'border-gray-secondary': '#DEDEDE',
       },
       fontFamily: {
         sans: ['SF Pro', ...defaultTheme.fontFamily.sans],

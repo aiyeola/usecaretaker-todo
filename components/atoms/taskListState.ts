@@ -31,10 +31,44 @@ const taskListState = atom<TaskListType[]>({
 const taskCount = selector<number>({
   key: 'taskCount',
   get: ({ get }) => {
-    const tasks = get(taskListState);
+    const tasks = get(filteredTaskListState);
 
-    return tasks.length;
+    return tasks.count;
   },
 });
 
-export { taskListState, taskCount };
+const taskListColorTag = atom<string>({
+  key: 'taskListColorTag',
+  default: 'all',
+});
+
+const filteredTaskListState = selector({
+  key: 'filteredTaskList',
+  get: ({ get }) => {
+    const filter = get(taskListColorTag);
+    const list = get(taskListState);
+
+    let taskList;
+    switch (filter) {
+      case 'primary':
+        taskList = list.filter((item) => item.colorTag === 'primary');
+        return {
+          taskList,
+          count: taskList.length,
+        };
+      case 'secondary':
+        taskList = list.filter((item) => item.colorTag === 'secondary');
+        return {
+          taskList,
+          count: taskList.length,
+        };
+      default:
+        return {
+          taskList: list,
+          count: list.length,
+        };
+    }
+  },
+});
+
+export { taskListState, taskCount, filteredTaskListState, taskListColorTag };
