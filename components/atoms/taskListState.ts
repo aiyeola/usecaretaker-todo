@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { atom, selector } from 'recoil';
 
 import type { TaskListType } from '@typings';
 

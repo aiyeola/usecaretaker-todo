@@ -48,7 +48,7 @@ const Index: NextPage = () => {
           </div>
         </div>
 
-        <div className="max-h-[460px] bg-white rounded-bl-[40px] rounded-br-[40px]">
+        <div className="min-h-[424px] bg-white rounded-bl-[40px] rounded-br-[40px]">
           <TaskList />
 
           <AddTask />

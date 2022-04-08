@@ -1,4 +1,4 @@
-export default function Checked(props) {
+export default function Checked(props): JSX.Element {
   return (
     <div
       className="w-[32px] h-[32px] bg-blue-border rounded-[16px] flex items-center justify-center cursor-pointer"

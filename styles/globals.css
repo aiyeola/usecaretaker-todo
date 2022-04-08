@@ -13,8 +13,3 @@
 html {
   scroll-behavior: smooth;
 }
-
-input:focus-visible {
-  outline-offset: 0px;
-  outline: none;
-}

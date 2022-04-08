@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React from 'react';
-import { selector, useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import ColorBox from '@components/assets/ColorBox';
 import Unchecked from '@components/assets/Unchecked';
