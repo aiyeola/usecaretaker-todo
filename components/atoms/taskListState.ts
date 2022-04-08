@@ -1,6 +1,23 @@
-import { atom, selector } from 'recoil';
+import { atom, selector, useSetRecoilState, AtomEffect } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
 
 import type { TaskListType } from '@typings';
+
+const ssrCompletedState = atom({
+  key: 'SsrCompleted',
+  default: false,
+});
+
+const useSsrComplectedState = () => {
+  const setSsrCompleted = useSetRecoilState(ssrCompletedState);
+  return () => setSsrCompleted(true);
+};
+
+const { persistAtom } = recoilPersist();
+
+export const persistAtomEffect = <T>(param: Parameters<AtomEffect<T>>[0]) => {
+  param.getPromise(ssrCompletedState).then(() => persistAtom(param));
+};
 
 const taskListState = atom<TaskListType[]>({
   key: 'taskListState',
@@ -26,6 +43,7 @@ const taskListState = atom<TaskListType[]>({
       colorTag: 'secondary',
     },
   ],
+  effects_UNSTABLE: [persistAtomEffect],
 });
 
 const taskCount = selector<number>({
@@ -71,4 +89,10 @@ const filteredTaskListState = selector({
   },
 });
 
-export { taskListState, taskCount, filteredTaskListState, taskListColorTag };
+export {
+  taskListState,
+  taskCount,
+  filteredTaskListState,
+  taskListColorTag,
+  useSsrComplectedState,
+};
