@@ -18,7 +18,8 @@
     "react-dom": "18.0.0",
     "react-hook-form": "^7.29.0",
     "recoil": "^0.7.0",
-    "recoil-persist": "^4.1.0"
+    "recoil-persist": "^4.1.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/node": "17.0.23",

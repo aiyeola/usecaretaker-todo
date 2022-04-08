@@ -23,21 +23,25 @@ const taskListState = atom<TaskListType[]>({
   key: 'taskListState',
   default: [
     {
+      id: 1,
       task: 'Submit final paper online',
       done: false,
       colorTag: 'secondary',
     },
     {
+      id: 2,
       task: 'Review proposed budget',
       done: false,
       colorTag: 'primary',
     },
     {
+      id: 3,
       task: 'Email Olayide about walkthroughs',
       done: true,
       colorTag: 'primary',
     },
     {
+      id: 4,
       task: 'Write on Blog: Ambition & Patience',
       done: true,
       colorTag: 'secondary',

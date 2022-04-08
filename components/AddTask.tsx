@@ -3,6 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { IsNotEmpty } from 'class-validator';
 import { useSetRecoilState } from 'recoil';
+import { v4 as uuidv4 } from 'uuid';
 
 import ColorBox from '@components/assets/ColorBox';
 import PlusIcon from '@components/assets/PlusIcon';
@@ -40,6 +41,7 @@ export default function AddTask() {
     setTaskList((oldTaskList) => [
       ...oldTaskList,
       {
+        id: uuidv4(),
         ...data,
         done: false,
       },

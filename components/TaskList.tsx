@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React from 'react';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 import ColorBox from '@components/assets/ColorBox';
 import Unchecked from '@components/assets/Unchecked';
@@ -12,8 +12,8 @@ import {
 import type { TaskListType } from '@typings';
 
 export default function TaskList() {
-  const setTaskList = useSetRecoilState<TaskListType[]>(taskListState);
-  const { taskList } = useRecoilValue(filteredTaskListState);
+  const [taskList, setTaskList] = useRecoilState<TaskListType[]>(taskListState);
+  const { taskList: filteredTaskList } = useRecoilValue(filteredTaskListState);
 
   const colorTag = {
     primary: <ColorBox width={18} height={18} />,
@@ -28,15 +28,15 @@ export default function TaskList() {
   return (
     <div className="bg-white">
       {React.Children.toArray(
-        taskList.map((task, index) => {
+        filteredTaskList.map((task) => {
           return (
             <div className="flex items-center justify-between py-[23px] border-[1px] border-border-gray border-solid bg-white px-[30px]">
               <div className="flex items-center">
                 <div className="mr-[16px]">
                   {task.done ? (
-                    <Checked onClick={() => checkUncheckStatus(index)} />
+                    <Checked onClick={() => checkUncheckStatus(task.id)} />
                   ) : (
-                    <Unchecked onClick={() => checkUncheckStatus(index)} />
+                    <Unchecked onClick={() => checkUncheckStatus(task.id)} />
                   )}
                 </div>
                 <p className="text-[20px] text-gray-primary">{task.task}</p>
@@ -50,7 +50,10 @@ export default function TaskList() {
   );
 }
 
-function toggleTaskStatus(arr: TaskListType[], index: number) {
+function toggleTaskStatus(arr: TaskListType[], id: number) {
+  const index = arr.findIndex((task) => task.id === id);
+  console.log('index: ', index);
+
   return [
     ...arr.slice(0, index),
     {
